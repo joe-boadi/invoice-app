@@ -8,7 +8,6 @@ import {
 } from 'react';
 
 // styles
-
 import styles from '../../assets/styles/modules/dropdown.module.css';
 
 // svg
@@ -25,7 +24,7 @@ export interface OptionType {
 interface DropdownProps {
 	options?: OptionType[];
 	label?: string;
-	smallScreenIcon: React.ReactNode;
+	smallScreenIcon?: React.ReactNode;
 	searchParam: string;
 }
 
