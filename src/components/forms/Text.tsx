@@ -1,9 +1,6 @@
+// TextField component
 import { forwardRef, useRef, useImperativeHandle } from 'react';
-
-// styles
 import styles from '../../assets/styles/modules/form.module.css';
-
-// from index
 import { FormProps } from './index';
 
 export interface FormTextProps extends FormProps {
