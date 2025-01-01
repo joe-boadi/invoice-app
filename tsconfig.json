@@ -16,6 +16,8 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "types": ["vitest/globals", "@testing-library/react"],
     /* Linting */
     "strict": true,
     "noUnusedLocals": true,
@@ -33,3 +35,9 @@
     }
   ]
 }
+
+  // "compilerOptions": {
+  //   "jsx": "react",
+  //   "esModuleInterop": true,
+  //   "types": ["vitest/globals", "@testing-library/react"]
+  // }
