@@ -1,10 +1,5 @@
-// react
 import { useRef } from 'react';
-
-// components
 import Dropdown, { DropdownRef } from '../../../components/button/Dropdown';
-
-// heroicons
 import { FunnelIcon } from '@heroicons/react/24/solid';
 
 const Filter = () => {
@@ -24,6 +19,11 @@ const Filter = () => {
 		},
 	];
 
+	// interface FilterOption {
+	// 	label: string;
+	// 	value: string;
+	// }
+
 	const Icon = <FunnelIcon width={22} />;
 
 	return (
@@ -38,5 +38,4 @@ const Filter = () => {
 		</div>
 	);
 };
-
 export default Filter;
