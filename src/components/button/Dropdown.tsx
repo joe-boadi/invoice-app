@@ -67,17 +67,13 @@ const Dropdown = forwardRef<DropdownRef, DropdownProps>((props, ref) => {
 	* {function} handleClick - The function to call when an option is clicked
 	* @param {string} option - The option to select
     *  {string} value - The value of the option
-	* @param {string} [ options ] - The options to display in the dropdown
-	* 
 	* {string} [searchParam] - The search parameter to update
 	* {string} [selectedOption] - The selected option
 	* {string} [existingParams] - The existing parameters
 	* {string} [updatedParams] - The updated parameters
 	* {string} [value] - The value of the option
 	* {string} [optionExists] - The option exists
-	* 
 	* @param return JSX.element instance to render a dropdown
-	* 
 	*/
 
 	const handleClick = (option: OptionType) => {
