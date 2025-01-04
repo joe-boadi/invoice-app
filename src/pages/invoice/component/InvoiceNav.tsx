@@ -49,7 +49,6 @@ const InvoiceNav = ({ invoice }: InvoiceNavProps) => {
 				status: 'paid',
 			}
 		);
-
 		navigate(0);
 	};
 

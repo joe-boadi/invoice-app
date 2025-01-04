@@ -1,6 +1,5 @@
 // image
 import noInvoiceImg from '../../../assets/svg/illustration-empty.svg';
-
 // styles
 import styles from '../../../assets/styles/modules/dashboard/dashboard.module.css';
 
