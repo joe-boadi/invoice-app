@@ -1,15 +1,16 @@
 .notification {
   position: fixed; /* Changed from absolute to fixed */
-  padding: 10px 16px;
+  padding: 3rem 4rem;
   border-radius: 4px;
   font-size: 14px;
   color: var(--bg-color);
   z-index: 1000;
   top: 20px;
-  right: 20px;
+  left: 20px;
   transition: all 0.3s ease;
   animation: slideIn 0.3s ease;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 @keyframes slideIn {
@@ -24,15 +25,15 @@
 }
 
 .notification.success {
-  background-color: #4caf50;
+  background-color: hsla(122, 39%, 49%, 0.6);
 }
 
 .notification.error {
-  background-color: #f44336;
+  background-color: hsla(4, 90%, 58%, 0.6);
 }
 
 .notification.info {
-  background-color: #2196f3;
+  background-color: hsla(207, 90%, 54%, 0.6);
 }
 
 @media (max-width: 768px) {
