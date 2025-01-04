@@ -1,11 +1,8 @@
 import Dropdown, { DropdownRef } from '../../../components/button/Dropdown';
 import { useRef } from 'react';
-
-// hero icons
 import { BarsArrowDownIcon } from '@heroicons/react/24/outline';
 
 const Sort = () => {
-	// dropdown
 	const dropdownSortRef = useRef<DropdownRef>(null);
 	const sortOptions = [
 		{
@@ -26,7 +23,6 @@ const Sort = () => {
 		},
 	];
 
-	// icons
 	const Icon = <BarsArrowDownIcon width={22} />;
 
 	return (
