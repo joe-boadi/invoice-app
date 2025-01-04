@@ -12,6 +12,7 @@ import moonSvg from '../assets/svg/icon-moon.svg';
 // utils
 import useDarkModeToggle from '../hooks/useDarkMode';
 import useLocalStorage from '../hooks/useLocalStorage';
+import { Link } from 'react-router-dom';
 
 const Navbar = () => {
 	const { isDarkMode, toggleTheme, setDarkMode } = useDarkModeToggle();
@@ -25,15 +26,17 @@ const Navbar = () => {
 	useEffect(() => {
 		const darkmode = value ?? isDarkMode;
 		setDarkMode(darkmode);
-	}, [value, isDarkMode]);
+	}, [value, isDarkMode, setDarkMode]);
 
 	return (
 		<div className={styles.nav}>
 			<div className={styles.logo}>
-				<img
-					src={logo}
-					alt='logo'
-				/>
+				<Link to='/'>
+					<img
+						src={logo}
+						alt='logo'
+						/>
+				</Link>
 			</div>
 
 			<div className={styles.wrapper}>
@@ -47,14 +50,15 @@ const Navbar = () => {
 					/>
 				</div>
 				<div className={styles.imgContainer}>
-					<img
-						src={avatar}
-						alt='profile picture'
-					/>
+					<Link to='/'>
+						<img
+							src={avatar}
+							alt='profile picture'
+							/>
+					</Link>
 				</div>
 			</div>
 		</div>
 	);
 };
-
 export default Navbar;
