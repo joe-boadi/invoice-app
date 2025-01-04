@@ -107,7 +107,7 @@ const Select = forwardRef<FormSelectRef, FormSelectProps>((props, ref) => {
 			onChange?.(selected[0]);
 		}
 
-	}, [defaultOption]);
+	}, [defaultOption, onChange, options]);
 
 	return (
 		<div
@@ -131,5 +131,4 @@ const Select = forwardRef<FormSelectRef, FormSelectProps>((props, ref) => {
 		</div>
 	);
 });
-
 export default Select;
