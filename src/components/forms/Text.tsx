@@ -76,5 +76,4 @@ const Text = forwardRef<FormTextRef, FormTextProps>((props, ref) => {
 		</div>
 	);
 });
-
 export default Text;
