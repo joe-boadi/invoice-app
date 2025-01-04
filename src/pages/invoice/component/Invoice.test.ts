@@ -48,6 +48,12 @@ vi.mock('react-router-dom', async () => {
   };
 });
 
+/**
+ * describe block for the Invoice component
+ * @param {string} description - describes the component being tested for the Invoice component
+ * @param { Function      } testFunction - callback function that contains the tests for the Invoice component  
+ */
+
 describe('Invoice Component', () => {
   const mockInvoice: InvoiceType = {
     id: 'INV001',
