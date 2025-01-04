@@ -13,17 +13,14 @@ import {
 	onLoadCanvas,
 } from '../../redux/offcanvas/offCanvasSlice';
 import OffCanvasForm from './form/OffCanvasForm';
-
-// rrd
 import { useParams, useNavigate } from 'react-router-dom';
-
-// react
 import { useEffect, useState } from 'react';
 
 // services
 import { usePostDataById } from '../../services/api/usePostData';
 import { useFetchDatabyId } from '../../services/api/useFetch';
 import { FormDataType } from '../../types';
+import { useNotification } from '../../features/invoice/components/Notification/hook/useNotification';
 
 const EditInvoiceCanvas = () => {
 	const navigate = useNavigate();
@@ -38,6 +35,9 @@ const EditInvoiceCanvas = () => {
 	const updateForm = (data: FormDataType) => {
 		setEditedFormData(data);
 	};
+
+	// toaster
+	const { showNotification } = useNotification() 
 
 	const submitData = async () => {
 		if (editedFormData) {
@@ -64,6 +64,8 @@ const EditInvoiceCanvas = () => {
 
 	const handleSave = () => {
 		submitData();
+		// show toaster
+		showNotification('Invoice Updated successfully', 'success');
 		handleClose();
 	};
 
@@ -80,7 +82,7 @@ const EditInvoiceCanvas = () => {
 		};
 
 		fetchData();
-	}, []);
+	}, [params.id]);
 
 	console.log()
 
