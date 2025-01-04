@@ -1,13 +1,26 @@
 .notification {
-  position: fixed;
+  position: fixed; /* Changed from absolute to fixed */
   padding: 10px 16px;
   border-radius: 4px;
   font-size: 14px;
-  color: white;
+  color: var(--bg-color);
   z-index: 1000;
   top: 20px;
   right: 20px;
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
 }
 
 .notification.success {
@@ -27,5 +40,7 @@
     right: auto;
     left: 50%;
     transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
   }
 }

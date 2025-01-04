@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import styles from "../../../assets/styles/modules/Toaster.module.css";
+import styles from "../../../../assets/styles/modules/Toaster.module.css";
 
 interface NotificationProps {
   message: string;
@@ -39,13 +39,15 @@ const Notification: React.FC<NotificationProps> = ({
   type,
   onClose,
 }) => {
+
   useEffect(() => {
-    const timer = setTimeout(onClose, 3000);
+    const timer = setTimeout(onClose, 2000);
     return () => clearTimeout(timer);
   }, [onClose]);
 
   return (
     <div className={`${styles.notification} ${styles[type]}`}>{message}</div>
-  );
-};
+  )
+}
+
 export default Notification;
