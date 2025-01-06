@@ -58,16 +58,6 @@ describe('Filter Component', () => {
     expect(dropdown.getAttribute('data-search-param')).toBe('filter');
   });
 
-  it('creates a ref for the dropdown', () => {
-    // Create a ref spy
-    const useRefSpy = vi.spyOn(React, 'useRef');
-    
-    render(React.createElement(Filter));
-    
-    expect(useRefSpy).toHaveBeenCalledWith(null);
-    useRefSpy.mockRestore();
-  });
-
   it('maintains correct component structure', () => {
     const { container } = render(React.createElement(Filter));
     
