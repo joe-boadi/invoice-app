@@ -35,9 +35,3 @@
     }
   ]
 }
-
-  // "compilerOptions": {
-  //   "jsx": "react",
-  //   "esModuleInterop": true,
-  //   "types": ["vitest/globals", "@testing-library/react"]
-  // }
