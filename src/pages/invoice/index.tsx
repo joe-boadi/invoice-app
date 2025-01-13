@@ -11,7 +11,7 @@ export interface paramsType {
 export const invoiceLoader: LoaderFunction<paramsType> = async ({ params }) => {
 	const id = params.id ?? '';
 
-	const url = `https://invoiceapi.vercel.app/invoices/${id}`;
+	const url = `https://invoice-app-bknd-strapi-cloud.onrender.com/invoices/${id}`;
 	const invoiceData = await useFetchData(url);
 
 	return { id, invoice: invoiceData.invoice };
