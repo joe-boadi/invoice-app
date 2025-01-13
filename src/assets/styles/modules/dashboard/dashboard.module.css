@@ -1,6 +1,7 @@
 .dashboard {
 	min-height: 100vh;
 	margin-left: 8rem;
+	color: var(--text);
 }
 
 .dashboardNav {
@@ -10,6 +11,7 @@
 	margin: 0 auto;
 	align-items: center;
 	gap: 0 3rem;
+	color: var(--text);
 }
 
 .noInvoice {
