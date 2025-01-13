@@ -4,7 +4,6 @@ import { useLoaderData } from 'react-router-dom';
 // styles
 import styles from '../../../assets/styles/modules/invoice/invoicepage.module.css';
 
-
 // components
 import GoBack from '../../../components/button/GoBack';
 import InvoiceNav from './../component/InvoiceNav';
