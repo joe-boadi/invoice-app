@@ -20,9 +20,13 @@ export const useFetchDatabyId = (
 	return getData(`${url}/${params.id}`);
 };
 const getData = async (url: string, params = {}) => {
+const token = localStorage.getItem('token')
+
 	return await axios({
 		url: url,
 		method: 'GET',
 		params: params,
-	}).then((res: any) => res.data);
+		headers: {Authorization: 'Bearer ' + token}
+	// eslint-disable-next-line @typescript-eslint/no-explicit-any
+	}).then((res: any) => res.data );
 };
