@@ -1,69 +1,126 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import _USERS from "../user/Users";
-import { AuthService } from "../helper/AuthService";
+// import { useNavigate } from "react-router-dom";
+// import _USERS from "../user/Users";
+// import { AuthService } from "../helper/AuthService";
+// import { User } from "../interface";
+import { useContext, useRef, useState, useEffect } from "react";
 import Button from "../../components/button/Button";
-import { User } from "../interface";
+import AuthContext from "../context/AuthProvider";
+import axios from "../../services/api/axios";
+import { isAxiosError } from "axios";
+import { CiCircleAlert } from "react-icons/ci";
+import styles from "../../assets/styles/modules/Login.module.css";
+import { useNavigate } from "react-router-dom";
 
-import styles from "../../assets/styles/modules/Login.module.css"
+const LOGIN_URL = "https://invoice-app-bknd-strapi-cloud.onrender.com/login";
 
-export const Login = () => {
-  const [credentials, setCredentials] = useState({
-    email: "",
-    password: "",
-  });
+const Login = () => {
+  const authContext = useContext(AuthContext);
+  if (!authContext) {
+    throw new Error("AuthContext is not provided");
+  }
+  const { setAuth } = authContext;
 
+  const [email, setEmail] = useState("isaac.hayfron@amalitech.com");
+  const [password, setPassword] = useState("Fe|3V3=$T_.K");
+  const [errorMsg, setErrorMsg] = useState("");
   const navigate = useNavigate();
+  const emailRef = useRef<HTMLInputElement>(null);
 
-  const handleChange = ({ target }: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = target;
-    setCredentials({ ...credentials, [name]: value });
-  };
+  useEffect(() => {
+    setErrorMsg("");
+  }, [email, password]);
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    const my_user: User | undefined = _USERS.find(
-      (user: User) =>
-        user.email === credentials.email &&
-        user.password === credentials.password
-    );
-    if (!my_user) return alert("Invalid credentials");
-    AuthService.saveToken("mock-jwt-token");
-    navigate("/app");
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setErrorMsg("");
+    if (!email || !password) {
+      setErrorMsg("Please fill in all fields");
+      return;
+    }
+
+    try {
+      const response = await axios.post(
+        LOGIN_URL,
+        JSON.stringify({ username: email, password }),
+        {
+          headers: { "Content-Type": "application/json" },
+        }
+      );
+
+      const accessToken = response?.data?.token;
+
+      localStorage.setItem("token", accessToken);
+      setAuth(accessToken);
+      setEmail("");
+      setPassword("");
+      navigate("/app");
+    } catch (err: unknown) {
+      if (isAxiosError(err)) {
+        if (!err.response) {
+          setErrorMsg(`No Server Response ${errorMsg}`);
+        } else if (err.response?.status === 400) {
+          setErrorMsg("Invalid Credentials");
+        } else if (err.response?.status === 401) {
+          setErrorMsg("You are Unauthorized");
+        } else {
+          setErrorMsg("Login Failed");
+        }
+      } else {
+        setErrorMsg("An unexpected error occurred");
+      }
+      emailRef.current?.focus();
+    }
   };
 
   return (
-      <div className={styles.container}>
-        <div className={styles.box}>
+    <div className={styles.container}>
+      <div className={styles.box}>
         <h2>Login</h2>
+        {errorMsg && (
+          <div className={styles.alertContainer}>
+            <CiCircleAlert className={styles.alertIcon} />
+            <p>{errorMsg}</p>
+          </div>
+        )}
         <form onSubmit={handleSubmit}>
-            <div className={styles.input_group}>
-                <label htmlFor="email">Email:</label>
-                <input
-                    type="email"
-                    id="email"
-                    name="email"
-                    placeholder="user@org.com"
-                    value={credentials.email}
-                    onChange={handleChange}
-                    />
-            </div>
-            <div className={styles.input_group}>
+          <div className={styles.input_group}>
+            <label htmlFor="email">Email:</label>
+            <input
+              type="email"
+              id="email"
+              ref={emailRef}
+              name="email"
+              placeholder="john-asumasi@amalitech.com"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+
+          <div className={styles.input_group}>
             <label htmlFor="password">Password:</label>
             <input
-                type="password"
-                id="password"
-                name="password"
-                placeholder="******"
-                value={credentials.password}
-                onChange={handleChange}
-                />
-            </div>
-            <Button className={styles.login_button} type={"submit"} variant={"default"}>
-                Log in
-            </Button>
+              type="password"
+              id="password"
+              name="password"
+              placeholder="******"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+
+          <Button
+            className={styles.login_button}
+            type={"submit"}
+            variant={"default"}
+          >
+            Log in
+          </Button>
         </form>
-        </div>
+      </div>
     </div>
   );
 };
+
+export default Login;
