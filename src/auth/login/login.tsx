@@ -1,7 +1,3 @@
-// import { useNavigate } from "react-router-dom";
-// import _USERS from "../user/Users";
-// import { AuthService } from "../helper/AuthService";
-// import { User } from "../interface";
 import { useContext, useRef, useState, useEffect } from "react";
 import Button from "../../components/button/Button";
 import AuthContext from "../context/AuthProvider";
@@ -49,10 +45,12 @@ const Login = () => {
 
       const accessToken = response?.data?.token;
 
-      localStorage.setItem("token", accessToken);
       setAuth(accessToken);
+      localStorage.setItem("token", accessToken);
+
       setEmail("");
       setPassword("");
+      
       navigate("/app");
     } catch (err: unknown) {
       if (isAxiosError(err)) {
