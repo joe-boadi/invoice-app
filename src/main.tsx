@@ -1,22 +1,23 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
+
 import "./assets/styles/global.css";
 import "./assets/styles/scss/index.scss";
 
-// redux
 import { Provider } from "react-redux";
 import { store } from "./redux/store.ts";
+
 import { AuthProvider } from "./auth/context/AuthProvider.tsx";
 import { ProtectedRoute } from "./auth/protectedRoute.tsx";
+import { AuthGuard } from "./auth/AuthGuard.tsx";
+
 import InvoicePage, { invoiceLoader } from "./pages/invoice/index.tsx";
 import ErrorPage from "./pages/errors/ErrorPage.tsx";
 import Login from "./auth/login/login.tsx";
-import { Logout } from "./auth/logout/logout.ts";
 import Homepage from "./layout/Homepage.tsx";
 import Dashboard from "./pages/dashboard/index.tsx";
 import MainLayout from "./layout/MainLayout.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import { AuthGuard } from "./auth/AuthGuard.tsx";
 
 const router = createBrowserRouter([
   {
@@ -54,8 +55,8 @@ const router = createBrowserRouter([
     element: <ErrorPage />,
   },
   {
-    path: "/logout",
-    element: <Logout />,
+    path: "404",
+    element: <ErrorPage />,
   },
   {
     path: "/",
