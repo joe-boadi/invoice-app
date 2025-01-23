@@ -10,13 +10,14 @@ export const AuthContext = createContext<AuthContextType | undefined>(
 );
 
 export const AuthProvider = ({ children }: { children: ReactNode }) => {
-    const [auth, setAuth] = useState<string | null>(null);
-    useEffect(() => {
-        const token = localStorage.getItem('token');
-        if (token) { 
-            setAuth(token);
-        }
-    },[])
+  const [auth, setAuth] = useState<string | null>(null);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setAuth(token);
+    }
+  }, [auth]);
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

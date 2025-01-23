@@ -50,7 +50,7 @@ const Login = () => {
 
       setEmail("");
       setPassword("");
-      
+
       navigate("/app");
     } catch (err: unknown) {
       if (isAxiosError(err)) {
