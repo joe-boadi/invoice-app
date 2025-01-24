@@ -8,9 +8,13 @@ export async function useDelete(url: string, id: string) {
 	return await axios({
 		url: `${url}/${id}`,
 		method: 'DELETE',
+		headers: {
+			'Content-Type': 'application/json',
+			Authorization: `Bearer ${localStorage.getItem('token')}`,
+        },
 	})
 		.then((res) => {
-			console.log(res.data);
+			console.table(res.data);
 		})
 		.catch((error) => {
 			console.error(error);

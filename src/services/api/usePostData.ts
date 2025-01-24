@@ -20,11 +20,17 @@ export async function usePostData(url: string, data: any) {
  * @param {string} id The new invoice identifier 
  * returns a promise that will be fulfilled
  */
+const token = localStorage.getItem('token')
 export async function usePostDataById(url: string, id: string, data: any) {
 	return await axios({
 		url: `${url}/${id}`,
 		method: 'POST',
 		data: data,
+		headers: {
+			Authorization: 'Bearer ' + token,
+			"Content-Type": "application/json",
+			'Accept': 'application/json',
+		},
 	})
 		.then((res) => {
 			console.log(res.data);
