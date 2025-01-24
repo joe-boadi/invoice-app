@@ -5,7 +5,7 @@ import AuthService from "./helper/AuthService";
 
 export const ProtectedRoute: React.FC<ProtectedRouteProps> = ({ children }) => {
   if (!AuthService.isAuthenticated()) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/404" />;
   }
   return <> {children} </>;
 };

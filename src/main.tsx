@@ -51,16 +51,20 @@ const router = createBrowserRouter([
     element: <Login />,
   },
   {
-    path: "401",
+    path: "/401",
     element: <ErrorPage />,
   },
   {
-    path: "404",
+    path: "/404",
     element: <ErrorPage />,
   },
   {
     path: "/",
-    element: <Homepage />,
+    element: (
+      <ProtectedRoute>
+        <Homepage />
+      </ProtectedRoute>
+    ),
   },
 ]);
 
