@@ -23,8 +23,13 @@ const Login = () => {
   const emailRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      setAuth(token);
+      navigate("/home");
+    }
     setErrorMsg("");
-  }, [email, password]);
+  }, [setAuth, navigate]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -47,11 +52,12 @@ const Login = () => {
 
       setAuth(accessToken);
       localStorage.setItem("token", accessToken);
+      localStorage.setItem("user", JSON.stringify({ email }));
 
       setEmail("");
       setPassword("");
 
-      navigate("/app");
+      navigate("/home");
     } catch (err: unknown) {
       if (isAxiosError(err)) {
         if (!err.response) {
