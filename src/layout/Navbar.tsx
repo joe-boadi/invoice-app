@@ -1,37 +1,33 @@
-import { useEffect, useRef, useState } from "react";
-
-// styles
+import { useEffect, useRef, useState, useContext } from "react";
 import styles from "../assets/styles/modules/nav.module.css";
-
-// svgs, images
 import logo from "../assets/svg/logo.svg";
 import avatar from "../assets/img/image-avatar.jpg";
 import sunSvg from "../assets/svg/icon-sun.svg";
 import moonSvg from "../assets/svg/icon-moon.svg";
-
-// utils
 import useDarkModeToggle from "../hooks/useDarkMode";
-import useLocalStorage from "../hooks/useLocalStorage";
 import Button from "../components/button/Button";
-import { AuthService } from "../auth/helper/AuthService";
 import { useNavigate } from "react-router-dom";
+import AuthService from "../auth/helper/AuthService";
+import AuthContext from "../auth/context/AuthProvider";
 
 const Navbar = () => {
-  const { isDarkMode, toggleTheme, setDarkMode } = useDarkModeToggle();
-  const [value, setValue] = useLocalStorage("isDarkMode", isDarkMode);
+  const { isDarkMode, toggleTheme } = useDarkModeToggle();
   const [isDropdownVisible, setIsDropdownVisible] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
+  const authContext = useContext(AuthContext);
 
   const handleToggleDarkMode = () => {
     toggleTheme();
-    setValue(!isDarkMode);
   };
 
-  useEffect(() => {
-    const darkmode = value ?? isDarkMode;
-    setDarkMode(darkmode);
-  }, [value, isDarkMode]);
+  const handleLogout = () => {
+    AuthService.logout();
+    if (authContext) {
+      authContext.setAuth(null); // Update the auth state
+    }
+    navigate("/login"); // Redirect to login page after logout
+  };
 
   // Handle Click outside
   const handleClickOutside = (event: MouseEvent) => {
@@ -49,16 +45,10 @@ const Navbar = () => {
     } else {
       document.removeEventListener("mousedown", handleClickOutside);
     }
-    // clean up event listeners / dropdown visibility changes
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isDropdownVisible]);
-
-  const handleLogout = () => {
-    AuthService.removeToken();
-    navigate("/");
-  };
 
   const toggleDropdown = () => {
     setIsDropdownVisible(!isDropdownVisible);

@@ -3,6 +3,7 @@ import Button from "../../components/button/Button";
 import AuthContext from "../context/AuthProvider";
 import axios from "../../services/api/axios";
 import { isAxiosError } from "axios";
+
 import { CiCircleAlert } from "react-icons/ci";
 import styles from "../../assets/styles/modules/Login.module.css";
 import { useNavigate } from "react-router-dom";
@@ -19,6 +20,7 @@ const Login = () => {
   const [email, setEmail] = useState("isaac.hayfron@amalitech.com");
   const [password, setPassword] = useState("Fe|3V3=$T_.K");
   const [errorMsg, setErrorMsg] = useState("");
+
   const navigate = useNavigate();
   const emailRef = useRef<HTMLInputElement>(null);
 

@@ -17,7 +17,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
     if (token) {
       setAuth(token);
     }
-  }, [auth]);
+  }, []); // Change dependency array to empty
 
   return (
     <AuthContext.Provider value={{ auth, setAuth }}>

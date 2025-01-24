@@ -14,4 +14,6 @@ export interface AuthServiceInterface {
     getToken: () => string | null;
     removeToken: () => void;
     isAuthenticated: () => boolean;
+    logout: () => void; // Add logout method
+
 }
