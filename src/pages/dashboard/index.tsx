@@ -49,7 +49,8 @@ const Dashboard = () => {
 
 	// function to trigger data
 	const fetchData = async () => {
-		const url = 'https://invoiceapi.vercel.app/invoices';
+		// Access the invoice api to get the invoices
+		const url = "https://invoice-app-bknd-strapi-cloud.onrender.com/invoices";
 
 		await dispatch(getInvoiceAsync(url));
 	};

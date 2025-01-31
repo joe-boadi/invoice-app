@@ -1,41 +1,27 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-
-// layout
-import MainLayout from './layout/MainLayout';
-
-// pages
-import Dashboard from './pages/dashboard';
-import InvoicePage, { invoiceLoader } from './pages/invoice';
-import ErrorPage from './pages/errors/ErrorPage';
+// import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ProtectedRoute } from "./auth/protectedRoute";
+import Homepage from "./layout/Homepage";
+import ErrorPage from "./pages/errors/ErrorPage";
 
 function App() {
-	const router = createBrowserRouter([
-		{
-			path: '/',
-			element: <MainLayout />,
-			errorElement: <ErrorPage />,
-			children: [
-				{
-					index: true,
-					element: <Dashboard />,
-					errorElement: <ErrorPage />,
-				},
-				{
-					path: '/invoice/:id',
-					element: <InvoicePage />,
-					loader: invoiceLoader,
-					errorElement: <ErrorPage />,
-				},
-				
-			],
-		},
-	]);
-
-	return (
-		<div className='app'>
-			<RouterProvider router={router} />
-		</div>
-	);
+  return (
+    <Router>
+      <div className="app">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Homepage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/404" element={<ErrorPage />} />
+        </Routes>
+      </div>
+    </Router>
+  );
 }
 
 export default App;

@@ -43,12 +43,12 @@ const InvoiceNav = ({ invoice }: InvoiceNavProps) => {
 
 	const markAsPaid = async () => {
 		await usePostDataById(
-			'https://invoiceapi.vercel.app/invoices',
+			"https://invoice-app-bknd-strapi-cloud.onrender.com/invoices",
 			invoice.id,
 			{
-				status: 'paid',
+				status: "paid",
 			}
-		);
+    );
 
 		navigate(0);
 	};

@@ -8,6 +8,7 @@
 	cursor: pointer;
 	transition: transform 150ms ease-in;
 	padding: 1.25rem 1.85rem;
+	color: var(--text);
 }
 
 .invoice:hover {
