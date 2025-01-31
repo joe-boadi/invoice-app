@@ -10,11 +10,12 @@ import styles from '../../../assets/styles/modules/invoice/invoicepage.module.cs
 // types
 import { InvoiceType } from '../../../types/InvoiceTypes';
 
+import { useMediaQuery } from 'react-responsive';
+
 interface InvoiceProps {
 	invoice: InvoiceType;
 }
 
-import { useMediaQuery } from 'react-responsive';
 
 const InvoicePaper = ({ invoice }: InvoiceProps) => {
 	const isWide = useMediaQuery({
@@ -125,5 +126,4 @@ const InvoicePaper = ({ invoice }: InvoiceProps) => {
 		</div>
 	);
 };
-
 export default InvoicePaper;

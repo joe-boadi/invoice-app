@@ -1,0 +1,47 @@
+.notification {
+  position: fixed; /* Changed from absolute to fixed */
+  padding: 3rem 4rem;
+  border-radius: 4px;
+  font-size: 14px;
+  color: var(--bg-color);
+  z-index: 1000;
+  top: 20px;
+  left: 20px;
+  transition: all 0.3s ease;
+  animation: slideIn 0.3s ease;
+  backdrop-filter: blur(8px);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.notification.success {
+  background-color: hsla(122, 39%, 49%, 0.6);
+}
+
+.notification.error {
+  background-color: hsla(4, 90%, 58%, 0.6);
+}
+
+.notification.info {
+  background-color: hsla(207, 90%, 54%, 0.6);
+}
+
+@media (max-width: 768px) {
+  .notification {
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;
+    max-width: 400px;
+  }
+}

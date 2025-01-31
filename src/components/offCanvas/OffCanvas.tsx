@@ -1,16 +1,11 @@
-// styles
-import styles from '../../assets/styles/modules/offcanvas/offcanvas.module.css';
-
-// react
 import { useEffect } from 'react';
-
-// redux
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/store';
-
 // components
 import CreateInvoiceCanvas from './CreateInvoiceCanvas';
 import EditInvoiceCanvas from './EditInvoiceCanvas';
+
+import styles from '../../assets/styles/modules/offcanvas/offcanvas.module.css';
 
 const OffCanvas = () => {
 	const { isOpen, contentKey } = useSelector(

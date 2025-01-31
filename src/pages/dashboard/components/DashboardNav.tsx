@@ -1,12 +1,7 @@
-// styles
-import styles from '../../../assets/styles/modules/dashboard/dashboard.module.css';
-
-// components
 import Button from '../../../components/button/Button';
 import Filter from './Filter';
 // import Sort from './Sort';
 
-// libraries
 import { useMediaQuery } from 'react-responsive';
 
 // redux
@@ -17,6 +12,7 @@ import {
 	onLoadCanvas,
 } from '../../../redux/offcanvas/offCanvasSlice';
 
+import styles from '../../../assets/styles/modules/dashboard/dashboard.module.css';
 // type
 interface DashbordNavProps {
 	length?: number;
@@ -64,5 +60,4 @@ const DashboardNav = ({ length }: DashbordNavProps) => {
 		</div>
 	);
 };
-
 export default DashboardNav;

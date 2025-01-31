@@ -20,7 +20,6 @@ interface CreateInvoiceProps {
 	invoice: InvoiceType;
 }
 
-// rrd imports
 import { Link } from 'react-router-dom';
 import Status from './Status';
 
@@ -74,5 +73,4 @@ const CreateInvoiceList = ({ invoice }: CreateInvoiceProps) => {
 		</Link>
 	);
 };
-
 export default CreateInvoiceList;

@@ -1,13 +1,9 @@
 // styles
 import styles from '../../assets/styles/modules/offcanvas/offcanvas.module.css';
-
 // redux
 import { useDispatch } from 'react-redux';
 import { AppDispatch } from '../../redux/store';
-import {
-	toggleCanvas,
-	onLoadCanvas,
-} from '../../redux/offcanvas/offCanvasSlice';
+import { toggleCanvas, onLoadCanvas, } from '../../redux/offcanvas/offCanvasSlice';
 import OffCanvasForm from './form/OffCanvasForm';
 
 const CreateInvoiceCanvas = () => {
